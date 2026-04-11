@@ -147,7 +147,9 @@ private:
     uint16_t dialValue;         // Turbo Dial Value (Raw)
     uint16_t incrementValue;    // Turbo Dial Increment Value
     uint16_t shmupAlwaysOn[4];  // Turbo SHMUP Always On Button Masks
-    uint8_t shmupEnablePin[4]; // Turbo SHMUP Hold to Enable Pins
+    bool shmupUseEnable[4];        // Turbo SHMUP Hold to Enable active status
+    uint8_t shmupEnablePin[4];  // Turbo SHMUP Hold to Enable Pins
+    uint32_t shmupEnablePinMask[4]; // Cache for shmup enable pin masks
     uint8_t shmupBtnPin[4];     // Turbo SHMUP Non-Turbo Pins
     uint16_t shmupBtnPinMask[4];// Cache for shmup button pin masks
     uint16_t shmupBtnMask[4];   // Turbo SHMUP Non-Turbo Button Masks
