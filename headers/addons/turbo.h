@@ -60,20 +60,20 @@
 #define SHMUP_ALWAYS_ON4 0
 #endif
 
-#ifndef PIN_SHMUP_HOLD_TO_ENABLE1
-#define PIN_SHMUP_HOLD_TO_ENABLE1 -1
+#ifndef PIN_SHMUP_ENABLE1
+#define PIN_SHMUP_ENABLE1 -1
 #endif
 
-#ifndef PIN_SHMUP_HOLD_TO_ENABLE2
-#define PIN_SHMUP_HOLD_TO_ENABLE2 -1
+#ifndef PIN_SHMUP_ENABLE2
+#define PIN_SHMUP_ENABLE2 -1
 #endif
 
-#ifndef PIN_SHMUP_HOLD_TO_ENABLE3
-#define PIN_SHMUP_HOLD_TO_ENABLE3 -1
+#ifndef PIN_SHMUP_ENABLE3
+#define PIN_SHMUP_ENABLE3 -1
 #endif
 
-#ifndef PIN_SHMUP_HOLD_TO_ENABLE4
-#define PIN_SHMUP_HOLD_TO_ENABLE4 -1
+#ifndef PIN_SHMUP_ENABLE4
+#define PIN_SHMUP_ENABLE4 -1
 #endif
 
 #ifndef PIN_SHMUP_BUTTON1
@@ -146,6 +146,8 @@ private:
     bool hasShmupDial;          // Flag for shmup dial presence
     uint16_t dialValue;         // Turbo Dial Value (Raw)
     uint16_t incrementValue;    // Turbo Dial Increment Value
+    uint16_t shmupAlwaysOn[4];  // Turbo SHMUP Always On Button Masks
+    uint8_t shmupEnablePin[4]; // Turbo SHMUP Hold to Enable Pins
     uint8_t shmupBtnPin[4];     // Turbo SHMUP Non-Turbo Pins
     uint16_t shmupBtnPinMask[4];// Cache for shmup button pin masks
     uint16_t shmupBtnMask[4];   // Turbo SHMUP Non-Turbo Button Masks

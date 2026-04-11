@@ -455,10 +455,10 @@ message TurboOptions
     optional int32 turboLedIndex = 21;
     optional uint32 turboLedColor = 22;
 
-    optional int32 shmupHoldToEnable1Pin = 23;
-    optional int32 shmupHoldToEnable2Pin = 24;
-    optional int32 shmupHoldToEnable3Pin = 25;
-    optional int32 shmupHoldToEnable4Pin = 26;
+    optional int32 shmupEnable1Pin = 23;
+    optional int32 shmupEnable2Pin = 24;
+    optional int32 shmupEnable3Pin = 25;
+    optional int32 shmupEnable4Pin = 26;
 }
 
 message SliderOptions
