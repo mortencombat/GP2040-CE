@@ -82,7 +82,7 @@ void TurboInput::setup(){
 
         alwaysEnabled = 0;
         for (uint8_t i = 0; i < 4; i++) {
-            shmupUseEnable[i] = (options.shmupAlwaysOn[i] > 0) && isValidPin(shmupEnablePin[i]);
+            shmupUseEnable[i] = (shmupAlwaysOn[i] > 0) && isValidPin(shmupEnablePin[i]);
             if ( shmupUseEnable[i] ) {
                 gpio_init(shmupEnablePin[i]);
                 gpio_set_dir(shmupEnablePin[i], GPIO_IN);
