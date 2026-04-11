@@ -1770,6 +1770,10 @@ std::string setAddonOptions()
     docToValue(turboOptions.shmupAlwaysOn2, doc, "shmupAlwaysOn2");
     docToValue(turboOptions.shmupAlwaysOn3, doc, "shmupAlwaysOn3");
     docToValue(turboOptions.shmupAlwaysOn4, doc, "shmupAlwaysOn4");
+    docToPin(turboOptions.shmupHoldToEnable1Pin, doc, "pinShmupHoldToEnable1");
+    docToPin(turboOptions.shmupHoldToEnable2Pin, doc, "pinShmupHoldToEnable2");
+    docToPin(turboOptions.shmupHoldToEnable3Pin, doc, "pinShmupHoldToEnable3");
+    docToPin(turboOptions.shmupHoldToEnable4Pin, doc, "pinShmupHoldToEnable4");
     docToPin(turboOptions.shmupBtn1Pin, doc, "pinShmupBtn1");
     docToPin(turboOptions.shmupBtn2Pin, doc, "pinShmupBtn2");
     docToPin(turboOptions.shmupBtn3Pin, doc, "pinShmupBtn3");
@@ -2222,6 +2226,10 @@ std::string getAddonOptions()
     writeDoc(doc, "shmupAlwaysOn2", turboOptions.shmupAlwaysOn2);
     writeDoc(doc, "shmupAlwaysOn3", turboOptions.shmupAlwaysOn3);
     writeDoc(doc, "shmupAlwaysOn4", turboOptions.shmupAlwaysOn4);
+    writeDoc(doc, "pinShmupHoldToEnable1", cleanPin(turboOptions.shmupHoldToEnable1Pin));
+    writeDoc(doc, "pinShmupHoldToEnable2", cleanPin(turboOptions.shmupHoldToEnable2Pin));
+    writeDoc(doc, "pinShmupHoldToEnable3", cleanPin(turboOptions.shmupHoldToEnable3Pin));
+    writeDoc(doc, "pinShmupHoldToEnable4", cleanPin(turboOptions.shmupHoldToEnable4Pin));
     writeDoc(doc, "pinShmupBtn1", cleanPin(turboOptions.shmupBtn1Pin));
     writeDoc(doc, "pinShmupBtn2", cleanPin(turboOptions.shmupBtn2Pin));
     writeDoc(doc, "pinShmupBtn3", cleanPin(turboOptions.shmupBtn3Pin));

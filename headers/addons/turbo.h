@@ -60,6 +60,22 @@
 #define SHMUP_ALWAYS_ON4 0
 #endif
 
+#ifndef PIN_SHMUP_HOLD_TO_ENABLE1
+#define PIN_SHMUP_HOLD_TO_ENABLE1 -1
+#endif
+
+#ifndef PIN_SHMUP_HOLD_TO_ENABLE2
+#define PIN_SHMUP_HOLD_TO_ENABLE2 -1
+#endif
+
+#ifndef PIN_SHMUP_HOLD_TO_ENABLE3
+#define PIN_SHMUP_HOLD_TO_ENABLE3 -1
+#endif
+
+#ifndef PIN_SHMUP_HOLD_TO_ENABLE4
+#define PIN_SHMUP_HOLD_TO_ENABLE4 -1
+#endif
+
 #ifndef PIN_SHMUP_BUTTON1
 #define PIN_SHMUP_BUTTON1 -1
 #endif

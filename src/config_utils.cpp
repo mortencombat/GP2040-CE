@@ -633,6 +633,10 @@ void ConfigUtils::initUnsetPropertiesWithDefaults(Config& config)
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupAlwaysOn2, SHMUP_ALWAYS_ON2);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupAlwaysOn3, SHMUP_ALWAYS_ON3);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupAlwaysOn4, SHMUP_ALWAYS_ON4);
+    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupHoldToEnable1Pin, PIN_SHMUP_HOLD_TO_ENABLE1);
+    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupHoldToEnable2Pin, PIN_SHMUP_HOLD_TO_ENABLE2);
+    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupHoldToEnable3Pin, PIN_SHMUP_HOLD_TO_ENABLE3);
+    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupHoldToEnable4Pin, PIN_SHMUP_HOLD_TO_ENABLE4);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn1Pin, PIN_SHMUP_BUTTON1);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn2Pin, PIN_SHMUP_BUTTON2);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn3Pin, PIN_SHMUP_BUTTON3);
@@ -1594,6 +1598,10 @@ void gpioMappingsMigrationCore(Config& config)
     markAddonPinIfUsed(config.addonOptions.turboOptions.shmupBtn2Pin);
     markAddonPinIfUsed(config.addonOptions.turboOptions.shmupBtn3Pin);
     markAddonPinIfUsed(config.addonOptions.turboOptions.shmupBtn4Pin);
+    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupHoldToEnable1Pin);
+    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupHoldToEnable2Pin);
+    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupHoldToEnable3Pin);
+    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupHoldToEnable4Pin);
     markAddonPinIfUsed(config.addonOptions.reverseOptions.ledPin);
     markAddonPinIfUsed(config.addonOptions.snesOptions.clockPin);
     markAddonPinIfUsed(config.addonOptions.snesOptions.latchPin);
