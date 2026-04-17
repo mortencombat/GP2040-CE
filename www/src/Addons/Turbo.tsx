@@ -388,7 +388,7 @@ const Turbo = ({
 						<Row className="mb-3">
 							<FormControl
 								type="number"
-								label={t('AddonsConfig:turbo-shmup-button-1-label')}
+								label={t('AddonsConfig:turbo-shmup-enable-1-label')}
 								name="pinShmupEnable1"
 								className="form-control-sm"
 								groupClassName="col-sm-3 mb-3"
@@ -401,7 +401,7 @@ const Turbo = ({
 							/>
 							<FormControl
 								type="number"
-								label={t('AddonsConfig:turbo-shmup-button-2-label')}
+								label={t('AddonsConfig:turbo-shmup-enable-2-label')}
 								name="pinShmupEnable2"
 								className="form-control-sm"
 								groupClassName="col-sm-3 mb-3"
@@ -414,7 +414,7 @@ const Turbo = ({
 							/>
 							<FormControl
 								type="number"
-								label={t('AddonsConfig:turbo-shmup-button-3-label')}
+								label={t('AddonsConfig:turbo-shmup-enable-3-label')}
 								name="pinShmupEnable3"
 								className="form-control-sm"
 								groupClassName="col-sm-3 mb-3"
@@ -427,7 +427,7 @@ const Turbo = ({
 							/>
 							<FormControl
 								type="number"
-								label={t('AddonsConfig:turbo-shmup-button-4-label')}
+								label={t('AddonsConfig:turbo-shmup-enable-4-label')}
 								name="pinShmupEnable4"
 								className="form-control-sm"
 								groupClassName="col-sm-3 mb-3"
