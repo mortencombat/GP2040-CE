@@ -41,38 +41,6 @@ export const turboScheme = {
 		.number()
 		.label('Turbo Pin LED')
 		.validatePinWhenValue('TurboInputEnabled'),
-	pinShmupBtn1: yup
-		.number()
-		.label('Charge Shot 1 Pin')
-		.validatePinWhenValue('TurboInputEnabled'),
-	pinShmupBtn2: yup
-		.number()
-		.label('Charge Shot 2 Pin')
-		.validatePinWhenValue('TurboInputEnabled'),
-	pinShmupBtn3: yup
-		.number()
-		.label('Charge Shot 3 Pin')
-		.validatePinWhenValue('TurboInputEnabled'),
-	pinShmupBtn4: yup
-		.number()
-		.label('Charge Shot 4 Pin')
-		.validatePinWhenValue('TurboInputEnabled'),
-	pinShmupEnable1: yup
-		.number()
-		.label('Hold To Enable 1 Pin')
-		.validatePinWhenValue('TurboInputEnabled'),
-	pinShmupEnable2: yup
-		.number()
-		.label('Hold To Enable 2 Pin')
-		.validatePinWhenValue('TurboInputEnabled'),
-	pinShmupEnable3: yup
-		.number()
-		.label('Hold To Enable 3 Pin')
-		.validatePinWhenValue('TurboInputEnabled'),
-	pinShmupEnable4: yup
-		.number()
-		.label('Hold To Enable 4 Pin')
-		.validatePinWhenValue('TurboInputEnabled'),
 	pinShmupDial: yup
 		.number()
 		.label('Shmup Dial Pin')
@@ -130,14 +98,6 @@ export const turboScheme = {
 };
 
 export const turboState = {
-	pinShmupEnable1: -1,		
-	pinShmupEnable2: -1,
-	pinShmupEnable3: -1,
-	pinShmupEnable4: -1,
-	pinShmupBtn1: -1,		
-	pinShmupBtn2: -1,
-	pinShmupBtn3: -1,
-	pinShmupBtn4: -1,
 	pinShmupDial: -1,
 	shmupAlwaysOn1: 0,
 	shmupAlwaysOn2: 0,
@@ -384,114 +344,6 @@ const Turbo = ({
 									</option>
 								))}
 							</FormSelect>
-						</Row>
-						<Row className="mb-3">
-							<FormControl
-								type="number"
-								label={t('AddonsConfig:turbo-shmup-enable-1-label')}
-								name="pinShmupEnable1"
-								className="form-control-sm"
-								groupClassName="col-sm-3 mb-3"
-								value={values.pinShmupEnable1}
-								error={errors.pinShmupEnable1}
-								isInvalid={Boolean(errors.pinShmupEnable1)}
-								onChange={handleChange}
-								min={-1}
-								max={29}
-							/>
-							<FormControl
-								type="number"
-								label={t('AddonsConfig:turbo-shmup-enable-2-label')}
-								name="pinShmupEnable2"
-								className="form-control-sm"
-								groupClassName="col-sm-3 mb-3"
-								value={values.pinShmupEnable2}
-								error={errors.pinShmupEnable2}
-								isInvalid={Boolean(errors.pinShmupEnable2)}
-								onChange={handleChange}
-								min={-1}
-								max={29}
-							/>
-							<FormControl
-								type="number"
-								label={t('AddonsConfig:turbo-shmup-enable-3-label')}
-								name="pinShmupEnable3"
-								className="form-control-sm"
-								groupClassName="col-sm-3 mb-3"
-								value={values.pinShmupEnable3}
-								error={errors.pinShmupEnable3}
-								isInvalid={Boolean(errors.pinShmupEnable3)}
-								onChange={handleChange}
-								min={-1}
-								max={29}
-							/>
-							<FormControl
-								type="number"
-								label={t('AddonsConfig:turbo-shmup-enable-4-label')}
-								name="pinShmupEnable4"
-								className="form-control-sm"
-								groupClassName="col-sm-3 mb-3"
-								value={values.pinShmupEnable4}
-								error={errors.pinShmupEnable4}
-								isInvalid={Boolean(errors.pinShmupEnable4)}
-								onChange={handleChange}
-								min={-1}
-								max={29}
-							/>
-						</Row>
-						<Row className="mb-3">
-							<FormControl
-								type="number"
-								label={t('AddonsConfig:turbo-shmup-button-1-label')}
-								name="pinShmupBtn1"
-								className="form-control-sm"
-								groupClassName="col-sm-3 mb-3"
-								value={values.pinShmupBtn1}
-								error={errors.pinShmupBtn1}
-								isInvalid={Boolean(errors.pinShmupBtn1)}
-								onChange={handleChange}
-								min={-1}
-								max={29}
-							/>
-							<FormControl
-								type="number"
-								label={t('AddonsConfig:turbo-shmup-button-2-label')}
-								name="pinShmupBtn2"
-								className="form-control-sm"
-								groupClassName="col-sm-3 mb-3"
-								value={values.pinShmupBtn2}
-								error={errors.pinShmupBtn2}
-								isInvalid={Boolean(errors.pinShmupBtn2)}
-								onChange={handleChange}
-								min={-1}
-								max={29}
-							/>
-							<FormControl
-								type="number"
-								label={t('AddonsConfig:turbo-shmup-button-3-label')}
-								name="pinShmupBtn3"
-								className="form-control-sm"
-								groupClassName="col-sm-3 mb-3"
-								value={values.pinShmupBtn3}
-								error={errors.pinShmupBtn3}
-								isInvalid={Boolean(errors.pinShmupBtn3)}
-								onChange={handleChange}
-								min={-1}
-								max={29}
-							/>
-							<FormControl
-								type="number"
-								label={t('AddonsConfig:turbo-shmup-button-4-label')}
-								name="pinShmupBtn4"
-								className="form-control-sm"
-								groupClassName="col-sm-3 mb-3"
-								value={values.pinShmupBtn4}
-								error={errors.pinShmupBtn4}
-								isInvalid={Boolean(errors.pinShmupBtn4)}
-								onChange={handleChange}
-								min={-1}
-								max={29}
-							/>
 						</Row>
 						<Row className="mb-3">
 							<FormSelect

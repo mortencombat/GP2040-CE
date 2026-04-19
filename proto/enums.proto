@@ -361,6 +361,12 @@ enum GpioAction
     MODE_WHEEL_PEDAL_GAS         = 128;
     MODE_WHEEL_PEDAL_BRAKE       = 129;
     MODE_WHEEL_PEDAL_CLUTCH      = 130;
+
+    TURBO_SHMUP_ENABLE           = 131;
+    TURBO_SHMUP_CHARGE_1         = 132;
+    TURBO_SHMUP_CHARGE_2         = 133;
+    TURBO_SHMUP_CHARGE_3         = 134;
+    TURBO_SHMUP_CHARGE_4         = 135;
 }
 
 enum GpioDirection

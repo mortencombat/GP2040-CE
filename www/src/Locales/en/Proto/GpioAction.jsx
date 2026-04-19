@@ -132,4 +132,9 @@ export default {
 	'MODE_WHEEL_PEDAL_GAS': 'Gas Pedal',
 	'MODE_WHEEL_PEDAL_BRAKE': 'Brake Pedal',
 	'MODE_WHEEL_PEDAL_CLUTCH': 'Clutch Pedal',
+	'TURBO_SHMUP_ENABLE': 'Turbo SHMUP Enable',
+	'TURBO_SHMUP_CHARGE_1': 'Turbo SHMUP Charge Button 1',
+	'TURBO_SHMUP_CHARGE_2': 'Turbo SHMUP Charge Button 2',
+	'TURBO_SHMUP_CHARGE_3': 'Turbo SHMUP Charge Button 3',
+	'TURBO_SHMUP_CHARGE_4': 'Turbo SHMUP Charge Button 4',
 };

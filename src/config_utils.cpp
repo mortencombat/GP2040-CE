@@ -633,14 +633,10 @@ void ConfigUtils::initUnsetPropertiesWithDefaults(Config& config)
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupAlwaysOn2, SHMUP_ALWAYS_ON2);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupAlwaysOn3, SHMUP_ALWAYS_ON3);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupAlwaysOn4, SHMUP_ALWAYS_ON4);
-    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupEnable1Pin, PIN_SHMUP_ENABLE1);
-    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupEnable2Pin, PIN_SHMUP_ENABLE2);
-    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupEnable3Pin, PIN_SHMUP_ENABLE3);
-    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupEnable4Pin, PIN_SHMUP_ENABLE4);
-    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn1Pin, PIN_SHMUP_BUTTON1);
-    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn2Pin, PIN_SHMUP_BUTTON2);
-    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn3Pin, PIN_SHMUP_BUTTON3);
-    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn4Pin, PIN_SHMUP_BUTTON4);
+    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn1Pin, (Pin_t)-1);
+    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn2Pin, (Pin_t)-1);
+    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn3Pin, (Pin_t)-1);
+    INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtn4Pin, (Pin_t)-1);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtnMask1, SHMUP_BUTTON1);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtnMask2, SHMUP_BUTTON2);
     INIT_UNSET_PROPERTY(config.addonOptions.turboOptions, shmupBtnMask3, SHMUP_BUTTON3);
@@ -1377,6 +1373,13 @@ void gpioMappingsMigrationCore(Config& config)
         fromProtoBuf(reverseOptions.has_buttonPin, &reverseOptions.buttonPin, GpioAction::BUTTON_PRESS_INPUT_REVERSE);
     }
 
+    if (turboOptions.enabled) {
+        fromProtoBuf(turboOptions.has_shmupBtn1Pin, &turboOptions.shmupBtn1Pin, GpioAction::TURBO_SHMUP_CHARGE_1);
+        fromProtoBuf(turboOptions.has_shmupBtn2Pin, &turboOptions.shmupBtn2Pin, GpioAction::TURBO_SHMUP_CHARGE_2);
+        fromProtoBuf(turboOptions.has_shmupBtn3Pin, &turboOptions.shmupBtn3Pin, GpioAction::TURBO_SHMUP_CHARGE_3);
+        fromProtoBuf(turboOptions.has_shmupBtn4Pin, &turboOptions.shmupBtn4Pin, GpioAction::TURBO_SHMUP_CHARGE_4);
+    }
+
     // verify that tilt factors are not set to -1
     if (tiltOptions.enabled) {
         if (tiltOptions.factorTilt1LeftX == -1) tiltOptions.factorTilt1LeftX = TILT1_FACTOR_LEFT_X;
@@ -1594,14 +1597,6 @@ void gpioMappingsMigrationCore(Config& config)
     markAddonPinIfUsed(config.addonOptions.buzzerOptions.enablePin);
     markAddonPinIfUsed(config.addonOptions.turboOptions.ledPin);
     markAddonPinIfUsed(config.addonOptions.turboOptions.shmupDialPin);
-    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupBtn1Pin);
-    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupBtn2Pin);
-    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupBtn3Pin);
-    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupBtn4Pin);
-    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupEnable1Pin);
-    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupEnable2Pin);
-    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupEnable3Pin);
-    markAddonPinIfUsed(config.addonOptions.turboOptions.shmupEnable4Pin);
     markAddonPinIfUsed(config.addonOptions.reverseOptions.ledPin);
     markAddonPinIfUsed(config.addonOptions.snesOptions.clockPin);
     markAddonPinIfUsed(config.addonOptions.snesOptions.latchPin);

@@ -1063,10 +1063,6 @@ bool ConfigUtils::fromLegacyStorage(Config& config)
         SET_PROPERTY(turboOptions, shmupBtnMask2, legacyAddonOptions.shmupBtnMask2);
         SET_PROPERTY(turboOptions, shmupBtnMask3, legacyAddonOptions.shmupBtnMask3);
         SET_PROPERTY(turboOptions, shmupBtnMask4, legacyAddonOptions.shmupBtnMask4);
-        SET_PROPERTY(turboOptions, shmupEnable1Pin, -1);
-        SET_PROPERTY(turboOptions, shmupEnable2Pin, -1);
-        SET_PROPERTY(turboOptions, shmupEnable3Pin, -1);
-        SET_PROPERTY(turboOptions, shmupEnable4Pin, -1);
         if (legacyAddonOptions.shmupMixMode == 0 || legacyAddonOptions.shmupMixMode == 1)
         {
             SET_PROPERTY(turboOptions, shmupMixMode, static_cast<ShmupMixMode>(legacyAddonOptions.shmupMixMode));
