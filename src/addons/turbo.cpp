@@ -62,35 +62,21 @@ void TurboInput::setup(){
     }
 
     Gamepad * gamepad = Storage::getInstance().GetProcessedGamepad();
-	  gamepad->auxState.turbo.enabled = true;
+	gamepad->auxState.turbo.enabled = true;
     gamepad->auxState.turbo.active = 1;
 
     // SHMUP Mode
     if ( options.shmupModeEnabled ) {
-        shmupBtnPin[0] = options.shmupBtn1Pin; // Charge Buttons Pins
-        shmupBtnPin[1] = options.shmupBtn2Pin;
-        shmupBtnPin[2] = options.shmupBtn3Pin;
-        shmupBtnPin[3] = options.shmupBtn4Pin;
-        for (uint8_t i = 0; i < 4; i++) {
-            if ( isValidPin(shmupBtnPin[i]) ) {
-                gpio_init(shmupBtnPin[i]);
-                gpio_set_dir(shmupBtnPin[i], GPIO_IN);
-                gpio_pull_up(shmupBtnPin[i]);
-                shmupBtnPinMask[i] = 1 << shmupBtnPin[i];
-            }
-        }
+        shmupAlwaysOn[0] = options.shmupAlwaysOn1; // Always On Button Masks
+        shmupAlwaysOn[1] = options.shmupAlwaysOn2;
+        shmupAlwaysOn[2] = options.shmupAlwaysOn3;
+        shmupAlwaysOn[3] = options.shmupAlwaysOn4;
         shmupBtnMask[0] = options.shmupBtnMask1; // Charge Buttons Assignment
         shmupBtnMask[1] = options.shmupBtnMask2;
         shmupBtnMask[2] = options.shmupBtnMask3;
         shmupBtnMask[3] = options.shmupBtnMask4;
-        alwaysEnabled = options.shmupAlwaysOn1 | options.shmupAlwaysOn2 |
-                            options.shmupAlwaysOn3 | options.shmupAlwaysOn4;
-        turboButtonsMask = alwaysEnabled;
-    } else {
-        // SHMUP mode off
-        alwaysEnabled = 0;
-        turboButtonsMask = 0;
     }
+    updateShmupPinMappings();        
 
     lastButtons = 0;
     bDebState = false;
@@ -109,7 +95,7 @@ void TurboInput::setup(){
 }
 
 /**
- * @brief Reset the turbo pin mask.
+ * @brief Reset the turbo pin mask and turbo buttons mask.
  */
 void TurboInput::reinit()
 {
@@ -121,6 +107,8 @@ void TurboInput::reinit()
             turboPinMask |= 1 << pin;
         }
     }
+
+    updateShmupPinMappings();
 }
 
 void TurboInput::process()
@@ -167,13 +155,25 @@ void TurboInput::process()
         lastPressed = 0; // disable last pressed
         lastDpad = 0; // disable last dpad
     }
-
-    // Get Charge Buttons
+    
     if (options.shmupModeEnabled) {
+        // Get Turbo buttons with Enable pin held (if no enable pin, use always on)
+        if (shmupEnablePinMask) {
+            bool enableHeld = gamepad->debouncedGpio & shmupEnablePinMask;
+            for (uint8_t i = 0; i < 4; i++) {
+                if (enableHeld) {
+                    turboButtonsMask |= shmupAlwaysOn[i];
+                } else {
+                    turboButtonsMask &= ~shmupAlwaysOn[i];
+                }
+            }
+        }
+
+        // Get Charge Buttons
         chargeState = 0;
         for (uint8_t i = 0; i < 4; i++) {
-            if (shmupBtnPinMask[i] > 0) { // if pin, get the GPIO
-                chargeState |= (!(gamepad->debouncedGpio & shmupBtnPinMask[i]) ? shmupBtnMask[i] : 0);
+            if (mapShmupCharge[i]) {
+                chargeState |= ((gamepad->debouncedGpio & mapShmupCharge[i]->pinMask) ? mapShmupCharge[i]->buttonMask : 0);
             }
         }
     }
@@ -250,4 +250,43 @@ void TurboInput::updateTurboShotCount(uint8_t shotCount, bool save) {
   }
 
   uIntervalUS = (uint32_t)std::floor(1000000.0 / (shotCount * 2));
+}
+
+/**
+ * @brief Update shmup pin mappings/masks (on setup and profile change).
+ */
+void TurboInput::updateShmupPinMappings() {
+    const TurboOptions& options = Storage::getInstance().getAddonOptions().turboOptions;
+    alwaysEnabled = 0;
+    if ( options.shmupModeEnabled ) {
+        shmupEnablePinMask = 0;
+        for (uint8_t i = 0; i < 4; i++) {
+            mapShmupCharge[i] = nullptr;
+        }
+        GpioMappingInfo* pinMappings = Storage::getInstance().getProfilePinMappings();
+        uint8_t idx;
+        shmupEnablePinMask = 0;
+        for (Pin_t pin = 0; pin < (Pin_t)NUM_BANK0_GPIOS; pin++)
+        {
+            switch (pinMappings[pin].action) {
+                case GpioAction::TURBO_SHMUP_ENABLE: shmupEnablePinMask |= 1 << pin; continue;
+                case GpioAction::TURBO_SHMUP_CHARGE_1: idx = 0; break;
+                case GpioAction::TURBO_SHMUP_CHARGE_2: idx = 1; break;
+                case GpioAction::TURBO_SHMUP_CHARGE_3: idx = 2; break;
+                case GpioAction::TURBO_SHMUP_CHARGE_4: idx = 3; break;
+                default: continue;
+            }
+            if (!mapShmupCharge[idx]) {
+                mapShmupCharge[idx] = new GamepadButtonMapping(shmupBtnMask[idx]);
+            }
+            mapShmupCharge[idx]->pinMask |= 1 << pin;
+        }
+
+        if (!shmupEnablePinMask) {
+            for (uint8_t i = 0; i < 4; i++) {            
+                alwaysEnabled |= shmupAlwaysOn[i];
+            }
+        }
+    }
+    turboButtonsMask = alwaysEnabled;
 }

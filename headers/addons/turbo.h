@@ -60,6 +60,22 @@
 #define SHMUP_ALWAYS_ON4 0
 #endif
 
+#ifndef PIN_SHMUP_ENABLE1
+#define PIN_SHMUP_ENABLE1 -1
+#endif
+
+#ifndef PIN_SHMUP_ENABLE2
+#define PIN_SHMUP_ENABLE2 -1
+#endif
+
+#ifndef PIN_SHMUP_ENABLE3
+#define PIN_SHMUP_ENABLE3 -1
+#endif
+
+#ifndef PIN_SHMUP_ENABLE4
+#define PIN_SHMUP_ENABLE4 -1
+#endif
+
 #ifndef PIN_SHMUP_BUTTON1
 #define PIN_SHMUP_BUTTON1 -1
 #endif
@@ -112,15 +128,16 @@ public:
     void handleEncoder(GPEvent* e);
 private:
     void updateTurboShotCount(uint8_t turboShotCount, bool save = true);
+    void updateShmupPinMappings();
     Mask_t turboPinMask;        // Pin mask for Turbo pin
     bool bDebState;             // Debounce TURBO Button State
     uint32_t uDebTime;          // Debounce TURBO Button Time
     uint32_t debChargeState;    // Debounce Charge Button State
     uint32_t debChargeTime[4];  // Debounce Charge Button Time
-    uint16_t lastPressed;       // Last buttons pressed (for Turbo Enable)
+    Mask_t lastPressed;         // Last buttons pressed (for Turbo Enable)
     uint8_t lastDpad;           // Last d-pad pressed (for Turbo Change)
-    uint16_t turboButtonsMask;  // Turbo Buttons Enabled
-    uint16_t alwaysEnabled;     // Turbo SHMUP Always Enabled
+    Mask_t turboButtonsMask;    // Turbo Buttons Enabled
+    Mask_t alwaysEnabled;       // Turbo SHMUP Always Enabled
     uint32_t uIntervalUS;       // Turbo Interval in microseconds
     uint32_t chargeState;       // Turbo Charge Button States
     bool bTurboFlicker;         // Turbo Enable Buttons Toggle OFF Flag ??
@@ -130,10 +147,11 @@ private:
     bool hasShmupDial;          // Flag for shmup dial presence
     uint16_t dialValue;         // Turbo Dial Value (Raw)
     uint16_t incrementValue;    // Turbo Dial Increment Value
-    uint8_t shmupBtnPin[4];     // Turbo SHMUP Non-Turbo Pins
-    uint16_t shmupBtnPinMask[4];// Cache for shmup button pin masks
-    uint16_t shmupBtnMask[4];   // Turbo SHMUP Non-Turbo Button Masks
-    uint16_t lastButtons;       // Last buttons (for Turbo Reset on Release)
+    Mask_t shmupAlwaysOn[4];    // Turbo SHMUP Always On Button Masks
+    Mask_t shmupBtnMask[4];     // Turbo SHMUP Charge Button Masks
+    Mask_t shmupEnablePinMask;  // Turbo SHMUP Hold to Enable pin mask
+    GamepadButtonMapping* mapShmupCharge[4]; // Turbo SHMUP Charge Button Mappings
+    Mask_t lastButtons;       // Last buttons (for Turbo Reset on Release)
     bool hasLedPin;             // Flag for LED pin presence
     uint8_t encoderValue;       // Rotary encoder value
     bool hasTurboAssigned;      // Turbo enabled on a pin.

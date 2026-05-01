@@ -441,10 +441,10 @@ message TurboOptions
     optional uint32 shmupAlwaysOn2 = 8;
     optional uint32 shmupAlwaysOn3 = 9;
     optional uint32 shmupAlwaysOn4 = 10;
-    optional int32 shmupBtn1Pin = 11;
-    optional int32 shmupBtn2Pin = 12;
-    optional int32 shmupBtn3Pin = 13;
-    optional int32 shmupBtn4Pin = 14;
+    optional int32 shmupBtn1Pin = 11 [deprecated = true];
+    optional int32 shmupBtn2Pin = 12 [deprecated = true];
+    optional int32 shmupBtn3Pin = 13 [deprecated = true];
+    optional int32 shmupBtn4Pin = 14 [deprecated = true];
     optional uint32 shmupBtnMask1 = 15;
     optional uint32 shmupBtnMask2 = 16;
     optional uint32 shmupBtnMask3 = 17;
